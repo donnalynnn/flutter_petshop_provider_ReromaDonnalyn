@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import '../Components/catalog_card.dart';
 import '/Models/animal.dart';
-import '/app_styles.dart';
-import 'package:provider/provider.dart';
-import '/Providers/cart_provider.dart';
-import 'package:icon_checkbox/icon_checkbox.dart';
 
 class PetCatalog extends StatelessWidget {
   PetCatalog({Key? key}) : super(key: key);
@@ -14,7 +10,6 @@ class PetCatalog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    CartProvider cartProvider = Provider.of<CartProvider>(context);
     // final item = ModalRoute.of(context)!.settings.arguments as Animal;
     // ignore: avoid_print
     print(MediaQuery.of(context).size.width);
