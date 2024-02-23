@@ -3,6 +3,7 @@ import '/Models/animal.dart';
 import '/app_styles.dart';
 import 'package:provider/provider.dart';
 import '/Providers/cart_provider.dart';
+import 'package:icon_checkbox/icon_checkbox.dart';
 
 class PetCatalog extends StatelessWidget {
   PetCatalog({Key? key}) : super(key: key);
@@ -92,32 +93,24 @@ class PetCatalog extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(
-                              width: 91,
+                              width: 100,
                             ),
-                            // IconButton(
-                            //   visualDensity: VisualDensity.compact,
-                            //     onPressed: () {
-                            //       debugPrint('Tapped');
-                            //     },
-                            //     icon: const Icon(
-                            //       Icons.shopping_cart_checkout_outlined,
-                            //       color: Color(0xffe8be13),
-                            //     ),
-                            //     selectedIcon: const Icon(
-                            //       Icons.shopping_cart,
-                            //       color: Color(0xffe8be13),
-                            //     ),
-                            //     iconSize: 18,
-                            // ),
-                            Checkbox(
+                            
+                            IconCheckbox(
+                                checkedIcon: Icons.shopping_cart,
+                                uncheckedIcon: Icons.shopping_cart_checkout_outlined,
                                 value: cartProvider.items.contains(animal),
+                                iconSize: 18,
+                                checkColor: kAmber,
+                                unCheckColor: kAmber,
                                 onChanged: (value) {
                                   if (value == true) {
                                     cartProvider.add(animal);
                                   } else {
                                     cartProvider.remove(animal);
                                   }
-                                }),
+                                }
+                            ),
                           ],
                         ),
                       ],
