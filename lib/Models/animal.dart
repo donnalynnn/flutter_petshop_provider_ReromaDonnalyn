@@ -1,3 +1,23 @@
+// import 'dart:convert';
+
+// Pets petsFromJson(String str) => Pets.fromJson(json.decode(str));
+
+// String petsToJson(Pets data) => json.encode(data.toJson());
+// class Pets {
+//   Pets({
+//     required this.data,
+//   });
+
+//   final List<Animal> data;
+
+//   factory Pets.fromJson(Map<String, dynamic> json) => Pets(
+//         data: List<Animal>.from(json["data"].map((x) => Animal.fromJson(x))),
+//       );
+
+//   Map<String, dynamic> toJson() => {
+//         "data": List<dynamic>.from(data.map((x) => x.toJson())),
+//       };
+// }
 class Animal {
   Animal(
       {this.animalName = '',
@@ -19,6 +39,30 @@ class Animal {
   String animalPrice;
   double price;
   bool buyAnimal;
+
+  factory Animal.fromJson(Map<String, dynamic> json) => Animal(
+        animalName: json["animalName"],
+        animalWeight: json["animalWeight"],
+        animalHeight: json["animalHeight"],
+        animalColor: json["animalColor"],
+        animalDescription: json["animalDescription"],
+        animalPicture: json["animalPicture"],
+        animalPrice: json["animalPrice"],
+        price: json["price"],
+        buyAnimal: json["buyAnimal"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "animalName": animalName,
+        "animalWeight": animalWeight,
+        "animalHeight": animalHeight,
+        "animalColor": animalColor,
+        "animalDescription": animalDescription,
+        "animalPicture": animalPicture,
+        "animalPrice": animalPrice,
+        "price": price,
+        "buyAnimal": buyAnimal,
+      };
 }
 
 var animalList = [

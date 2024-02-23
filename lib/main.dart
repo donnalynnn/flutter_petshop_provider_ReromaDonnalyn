@@ -4,10 +4,9 @@ import 'Screens/catalogscreen.dart';
 import 'package:provider/provider.dart';
 import '/Providers/cart_provider.dart';
 import 'Screens/detailscreen.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/services.dart';
-
 import 'Screens/onboardingscreen.dart';
+import 'app_styles.dart';
 
 bool? seenOnboard=false;
 void main()  {
@@ -96,30 +95,32 @@ class _NavBarState extends State<NavBar> {
           ),
         ],
       ),
-      body: <Widget>[
-        /// Home page
-        Card(
-          shadowColor: Colors.transparent,
-          margin: const EdgeInsets.all(8.0),
-          child: SizedBox.expand(
-            child: Center(
-              child: Text(
-                'Home page',
-                style: theme.textTheme.titleLarge,
+      body: Container(
+        color: kAmber,
+        child: <Widget>[
+          /// Home page
+          const Card(
+            shadowColor: Colors.transparent,
+            margin: EdgeInsets.all(50),
+            child: SizedBox.expand(
+              child: Center(
+                child: Text(
+                  '   PET \nSTORE',
+                  style: TextStyle(fontSize: 50, color: kAmber),)
               ),
             ),
           ),
-        ),
-
-        /// Catalog page
-        PetCatalog(),
-
-        /// Notifications page
-        const CartScreen(),
-
-        /// profile page
-        Container()
-      ][currentPageIndex],
+      
+          /// Catalog page
+          PetCatalog(),
+      
+          /// Notifications page
+          const CartScreen(),
+      
+          /// profile page
+          Container()
+        ][currentPageIndex],
+      ),
     );
   }
 }

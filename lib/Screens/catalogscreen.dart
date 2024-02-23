@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import '../Components/catalog_card.dart';
+import '../Components/search.dart';
 import '/Models/animal.dart';
 
+// ignore: must_be_immutable
 class PetCatalog extends StatelessWidget {
   PetCatalog({Key? key}) : super(key: key);
 
   final TextEditingController _textEditingController = TextEditingController();
+  List<Animal> allAnimals = animalList;
 
   @override
   Widget build(BuildContext context) {
-    
     // ignore: avoid_print
     print(MediaQuery.of(context).size.width);
     return Scaffold(
@@ -21,7 +23,8 @@ class PetCatalog extends StatelessWidget {
         children: [
           //SEARCH BAR
           SearchBar(
-            hintText: 'Search for Dog or Cat breed',
+            // onChanged: searchBook,
+            hintText: 'Search for Pets ',
             constraints: const BoxConstraints(
               maxWidth: 350,
               minHeight: 54.0,
@@ -34,6 +37,7 @@ class PetCatalog extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(30)),
             )),
           ),
+          // Search(),
           const SizedBox(
             height: 10,
           ),
@@ -48,18 +52,23 @@ class PetCatalog extends StatelessWidget {
                     mainAxisSpacing: 20),
                 itemCount: animalList.length,
                 itemBuilder: (BuildContext ctx, index) {
+                  // final pet = allAnimals[index];
+
                   return GestureDetector(
                     onTap: () {
-                      Navigator.of(context).pushNamed('/pet_details', arguments: Animal(
-                        animalName: animalList[index].animalName,
-                        animalDescription: animalList[index].animalDescription,
-                        animalColor: animalList[index].animalColor,
-                        animalHeight: animalList[index].animalHeight,
-                        animalPicture: animalList[index].animalPicture,
-                        animalPrice: animalList[index].animalPrice,
-                        animalWeight: animalList[index].animalWeight,
-                        buyAnimal: animalList[index].buyAnimal,
-                      ),);
+                      Navigator.of(context).pushNamed(
+                        '/pet_details',
+                        arguments: Animal(
+                          animalName: animalList[index].animalName,
+                          animalDescription:animalList[index].animalDescription,
+                          animalColor: animalList[index].animalColor,
+                          animalHeight: animalList[index].animalHeight,
+                          animalPicture: animalList[index].animalPicture,
+                          animalPrice: animalList[index].animalPrice,
+                          animalWeight: animalList[index].animalWeight,
+                          buyAnimal: animalList[index].buyAnimal,
+                        ),
+                      );
                     },
                     child: CatalogCard(
                       animal: animalList[index],
@@ -71,4 +80,14 @@ class PetCatalog extends StatelessWidget {
       ),
     );
   }
+
+  // void searchBook(String query) {
+  //   final suggestions = allAnimals.where((animal) {
+  //     final animalName = animal.animalName.toLowerCase();
+  //     final input = query.toLowerCase();
+  //     return animalName.contains(input);
+  //   }).toList();
+
+  //   setState(()=> allAnimals = suggestions);
+  // }
 }

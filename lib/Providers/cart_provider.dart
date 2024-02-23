@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '/Models/animal.dart';
 
 class CartProvider extends ChangeNotifier {
+  //for search bar
+
   final List<Animal> _items = [];
 
   List<Animal> get items => _items;
@@ -24,4 +26,6 @@ class CartProvider extends ChangeNotifier {
   double getCartTotal() {
     return _items.fold(0, (previousValue, item) => previousValue + item.price);
   }
+
+ 
 }
