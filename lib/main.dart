@@ -2,11 +2,27 @@ import 'package:flutter/material.dart';
 import 'Screens/cartscreen.dart';
 import 'Screens/catalogscreen.dart';
 import 'package:provider/provider.dart';
-import '/Models/animal.dart';
 import '/Providers/cart_provider.dart';
 import 'Screens/detailscreen.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/services.dart';
 
-void main() {
+import 'Screens/onboardingscreen.dart';
+
+bool? seenOnboard=false;
+void main()  {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // show status bar
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [
+    SystemUiOverlay.bottom,
+    SystemUiOverlay.top,
+  ]);
+
+  // to load onboard shared preferences for the first time
+  // SharedPreferences prefs = await SharedPreferences.getInstance();
+  // seenOnboard = prefs.getBool('seenOnboard') ?? false;
+
   runApp(
     ChangeNotifierProvider(
       create: (context) => CartProvider(),
@@ -14,7 +30,6 @@ void main() {
     ),
   );
 }
-
 
 class PetShopApp extends StatelessWidget {
   const PetShopApp({super.key});
@@ -24,7 +39,7 @@ class PetShopApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: true),
-      home: const NavBar(),
+      home: seenOnboard == true ? const NavBar() : const OnboardingPage(),
       routes: {
         // '/': (context) => const HomeScreen(),
         '/pet_details': (context) => const PetDetails(),
@@ -47,41 +62,35 @@ class _NavBarState extends State<NavBar> {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     return Scaffold(
-      
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
           setState(() {
             currentPageIndex = index;
           });
         },
-        surfaceTintColor: Colors.white ,
+        surfaceTintColor: Colors.white,
         backgroundColor: Colors.white,
         indicatorColor: Colors.white,
         selectedIndex: currentPageIndex,
-
         destinations: const <Widget>[
           NavigationDestination(
-            selectedIcon: Icon(Icons.home, color:Color(0xffe8be13)),
+            selectedIcon: Icon(Icons.home, color: Color(0xffe8be13)),
             icon: Icon(Icons.home_outlined),
             label: 'Home',
           ),
-
-
           NavigationDestination(
-            selectedIcon: Icon(Icons.menu_book, color:Color(0xffe8be13)),
+            selectedIcon: Icon(Icons.menu_book, color: Color(0xffe8be13)),
             icon: Icon(Icons.menu_book_outlined),
             label: 'Catalog',
           ),
-
-
           NavigationDestination(
-            selectedIcon: Icon(Icons.shopping_basket, color:Color(0xffe8be13)),
+            selectedIcon: Icon(Icons.shopping_basket, color: Color(0xffe8be13)),
             icon: Icon(Icons.shopping_basket_outlined),
             label: 'Cart',
           ),
-
           NavigationDestination(
-            selectedIcon: Icon(Icons.person_2_rounded, color:Color(0xffe8be13)),
+            selectedIcon:
+                Icon(Icons.person_2_rounded, color: Color(0xffe8be13)),
             icon: Icon(Icons.person_2_outlined),
             label: 'Profile',
           ),
@@ -107,27 +116,6 @@ class _NavBarState extends State<NavBar> {
 
         /// Notifications page
         const CartScreen(),
-        // const Padding(
-        //   padding: EdgeInsets.all(8.0),
-        //   child: Column(
-        //     children: <Widget>[
-        //       Card(
-        //         child: ListTile(
-        //           leading: Icon(Icons.notifications_sharp),
-        //           title: Text('Notification 1'),
-        //           subtitle: Text('This is a notification'),
-        //         ),
-        //       ),
-        //       Card(
-        //         child: ListTile(
-        //           leading: Icon(Icons.notifications_sharp),
-        //           title: Text('Notification 2'),
-        //           subtitle: Text('This is a notification'),
-        //         ),
-        //       ),
-        //     ],
-        //   ),
-        // ),
 
         /// profile page
         Container()

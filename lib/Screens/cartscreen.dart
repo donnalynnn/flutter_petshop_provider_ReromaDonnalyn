@@ -101,14 +101,6 @@ class CartScreen extends StatelessWidget {
                     ),
                     
                   );
-                  // return ListTile(
-                  //   title: Text(
-                  //     item.animalName,
-                  //   ),
-                  //   onLongPress: () {
-                  //     provider.remove(item);
-                  //   },
-                  // );
                   
                 }, separatorBuilder: (BuildContext context, int index) => const Divider(),
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'size_config.dart';
 
 const Color kRed = Color(0xffFF5252);
 const Color kAmber = Color(0xffe8be13);
@@ -61,3 +62,23 @@ const kGreyColor600 = Color(0xFFEAEAEA);
 const kGreyColor500 = Color(0xFFF6F6F6);
 const kGreyColor400 = Color(0x50CACCCF);
 const kYellowColor = Color(0xFFFFE848);
+const Color kDarkWhiteColor = Color(0xffEBEDF1);
+const Color kBlackColor = Color(0xff172B4D);
+const Color kLightBlackColor = Color(0xff434F65);
+
+final kTitleOnboarding = GoogleFonts.inter(
+  fontSize: SizeConfig.blockSizeHorizontal! * 7,
+  color: kBlackColor,
+  fontWeight: FontWeight.bold,
+);
+
+final kSubtitleOnboarding = GoogleFonts.inter(
+  fontSize: SizeConfig.blockSizeHorizontal! * 4,
+  color: kLightBlackColor,
+);
+
+final kTextButton = GoogleFonts.inter(
+  color: kAmber,
+  fontSize: SizeConfig.blockSizeHorizontal! * 4.5,
+  fontWeight: FontWeight.bold,
+);
