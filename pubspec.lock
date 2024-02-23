@@ -124,7 +124,7 @@ packages:
     source: hosted
     version: "4.0.2"
   icon_checkbox:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: icon_checkbox
       sha256: ee24971352488963a52be7384ad8719f2152ecd644e4999edda8372406113e99

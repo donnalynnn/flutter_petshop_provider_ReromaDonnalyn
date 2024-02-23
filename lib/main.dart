@@ -4,6 +4,7 @@ import 'Screens/catalogscreen.dart';
 import 'package:provider/provider.dart';
 import '/Models/animal.dart';
 import '/Providers/cart_provider.dart';
+import 'Screens/detailscreen.dart';
 
 void main() {
   runApp(
@@ -21,8 +22,13 @@ class PetShopApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: true),
       home: const NavBar(),
+      routes: {
+        // '/': (context) => const HomeScreen(),
+        '/pet_details': (context) => const PetDetails(),
+      },
     );
   }
 }
@@ -41,6 +47,7 @@ class _NavBarState extends State<NavBar> {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     return Scaffold(
+      
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
           setState(() {
