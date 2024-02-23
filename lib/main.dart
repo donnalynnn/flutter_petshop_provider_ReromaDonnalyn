@@ -130,32 +130,7 @@ class _NavBarState extends State<NavBar> {
         // ),
 
         /// profile page
-        Consumer<CartProvider>(
-            builder: (context, provider, _) {
-              return Column(
-                children: [
-                  SizedBox(
-                    height: MediaQuery.sizeOf(context).height * 0.80,
-                    child: ListView.builder(
-                      itemCount: provider.items.length,
-                      itemBuilder: (context, index) {
-                        Animal item = provider.items[index];
-                        return ListTile(
-                          title: Text(
-                            item.animalName,
-                          ),
-                          onLongPress: () {
-                            provider.remove(item);
-                          },
-                        );
-                      },
-                    ),
-                  ),
-                  Text("Cart Total: \$${provider.getCartTotal()}")
-                ],
-              );
-            },
-          )
+        Container()
       ][currentPageIndex],
     );
   }

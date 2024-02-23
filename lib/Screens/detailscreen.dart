@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 import '../Models/animal.dart';
+import '../Providers/cart_provider.dart';
 import '/size_config.dart';
 import '/app_styles.dart';
+import 'package:icon_checkbox/icon_checkbox.dart';
 
 class PetDetails extends StatelessWidget {
   const PetDetails({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
     SizeConfig().init(context);
     final item = ModalRoute.of(context)!.settings.arguments as Animal;
-
+    
     return Scaffold(
       backgroundColor: kWhite,
       body: SingleChildScrollView(
@@ -75,6 +79,7 @@ class PetDetails extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      
                       Text(
                         item.animalName,
                         style: kSourceSansProBold.copyWith(
@@ -90,9 +95,7 @@ class PetDetails extends StatelessWidget {
                           SvgPicture.asset(
                             'assets/pin_point_icon.svg',
                           ),
-                          const SizedBox(
-                            width: 8,
-                          ),
+                          
                           Text(
                             'Canada · 8m',
                             style: kSourceSansProregular.copyWith(
@@ -104,13 +107,21 @@ class PetDetails extends StatelessWidget {
                       ),
                     ],
                   ),
-                  IconButton(
-                    color: const Color(0xffe8be13),
-                    icon: const Icon(
-                      Icons.shopping_cart,
-                    ),
-                    onPressed: () {},
-                  )
+                  IconCheckbox(
+                    checkedIcon: Icons.shopping_cart,
+                    uncheckedIcon: Icons.shopping_cart_checkout_outlined,
+                    value: cartProvider.items.contains(item),
+                    iconSize: 30,
+                    checkColor: kAmber,
+                    unCheckColor: kAmber,
+                    onChanged: (value) {
+                      if (value == true) {
+                        cartProvider.add(item);
+                      } else {
+                        cartProvider.remove(item);
+                      }
+                    }
+                  ),
                 ],
               ),
             ),
